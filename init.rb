@@ -1,1 +1,3 @@
-# Include hook code here
+require 'merger'
+
+ActiveRecord::Base.send(:include, Merger)

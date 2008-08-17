@@ -1,0 +1,8 @@
+original:
+  given_name: Brandon
+  family_name: Keepers
+  created_at: <%= 1.year.ago.to_s(:db) %>
+duplicate:
+  given_name: Brandon
+  family_name: Keepers
+  created_at: <%= 1.week.ago.to_s(:db) %>

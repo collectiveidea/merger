@@ -1,0 +1,12 @@
+original_home:
+  number: 1
+  type: Home
+  person: original
+original_work:
+  number: 2
+  type: Work
+  person: original
+duplicate_mobile:
+  number: 3
+  type: Mobile
+  person: duplicate
