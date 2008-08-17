@@ -1,13 +1,9 @@
 Merger
 ======
 
-Introduction goes here.
-
+This is a Rails plugin for merging Active Record models together.  It is far from complete, but at the moment will move all the associations from the newer records to the oldest record and delete the newer records.
 
 Example
 =======
 
-Example goes here.
-
-
-Copyright (c) 2008 [name of plugin creator], released under the MIT license
+  @person.merge!(@dup1, @dup2)
