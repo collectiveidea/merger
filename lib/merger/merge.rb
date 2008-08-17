@@ -4,7 +4,7 @@ module Merger
   
     def initialize(*records)
       records = records.flatten
-      @keep = records.sort_by {|r| r.created_at }.first
+      @keep = records.sort_by(&:id).first
       @duplicates = records - [@keep]
     end
   
