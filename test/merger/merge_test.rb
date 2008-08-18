@@ -15,9 +15,15 @@ class Merger::MergeTest < Test::Unit::TestCase
     assert !@merge.duplicates.include?(people(:original))
   end
   
-  def test_merge_associations_moves_to_original
+  def test_moves_associations_to_original
     @merge.associations!
     assert_equal 3, people(:original).phones.count
+    assert_equal 0, people(:duplicate).phones.count
+  end
+  
+  def test_skip_association
+    Merger::Merge.new(people(:original), people(:duplicate), :skip_association => :phones).merge!
+    assert_equal 2, people(:original).phones.count
   end
   
 end

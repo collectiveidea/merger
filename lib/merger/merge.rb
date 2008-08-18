@@ -1,8 +1,9 @@
 module Merger
   class Merge
-    attr_reader :keep, :duplicates
+    attr_reader :keep, :duplicates, :options
   
     def initialize(*records)
+      @options = records.extract_options!
       records = records.flatten
       @keep = records.sort_by(&:id).first
       @duplicates = records - [@keep]
@@ -11,6 +12,7 @@ module Merger
     def associations!
       keep.class.reflect_on_all_associations.each do |association|
         duplicates.each do |record|
+          next if association.through_reflection || (Array(options[:skip_association]).include?(association.name))
           case association.macro
           when :has_many, :has_and_belongs_to_many
             name = "#{association.name.to_s.singularize}_ids"
