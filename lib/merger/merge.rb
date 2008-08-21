@@ -4,7 +4,7 @@ module Merger
   
     def initialize(*records)
       @options = records.extract_options!
-      records = records.flatten
+      records = records.flatten.uniq
       @keep = records.sort_by(&:id).first
       @duplicates = records - [@keep]
     end
