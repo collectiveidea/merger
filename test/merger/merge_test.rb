@@ -9,6 +9,11 @@ class Merger::MergeTest < Test::Unit::TestCase
   def test_keeps_oldest_record
     assert_equal people(:original), @merge.keep
   end
+  
+  def test_explicitly_specify_record_to_keep
+    @merge = Merger::Merge.new(Person.find(:all), :keep => people(:duplicate))
+    assert_equal people(:duplicate), @merge.keep
+  end
 
   def test_uses_newer_as_duplicates
     assert @merge.duplicates.include?(people(:duplicate))
