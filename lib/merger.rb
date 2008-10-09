@@ -7,7 +7,7 @@ module Merger
   
   module InstanceMethods
     def merge!(*others)
-      Merger.new(others.push(self)).merge!
+      Merger::Merge.new(others.push(self)).merge!
     end
   end
 end
