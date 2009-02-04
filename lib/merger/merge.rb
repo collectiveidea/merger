@@ -9,10 +9,18 @@ module Merger
       @duplicates = records - [@keep]
     end
   
+    def ignored_associations
+      ignored = Array(options[:skip_association])
+      keep.class.reflect_on_all_associations.each do |association|
+        ignored << association.through_reflection.name if association.through_reflection
+      end
+      ignored
+    end
+
     def associations!
       keep.class.reflect_on_all_associations.each do |association|
         duplicates.each do |record|
-          next if association.through_reflection || (Array(options[:skip_association]).include?(association.name))
+          next if ignored_associations.include?(association.name)
           case association.macro
           when :has_many, :has_and_belongs_to_many
             name = "#{association.name.to_s.singularize}_ids"
