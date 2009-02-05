@@ -1,0 +1,16 @@
+original_friend:
+  id: 1
+  name: Friend
+dup_friend1:
+  id: 2
+  name: Friends
+dup_friend2:
+  id: 3
+  name: Friends
+developer:
+  id: 4
+  name: Developer
+
+
+
+

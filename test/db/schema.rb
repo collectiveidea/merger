@@ -8,4 +8,15 @@ ActiveRecord::Schema.define(:version => 0) do
     t.string :number, :type
     t.belongs_to :person
   end
+
+  create_table :tags, :force => true do |t|
+    t.string :name
+    t.timestamps
+  end
+
+  create_table :taggings, :force => true do |t|
+    t.belongs_to :person
+    t.belongs_to :tag
+  end
+  
 end

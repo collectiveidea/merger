@@ -30,5 +30,22 @@ class Merger::MergeTest < Test::Unit::TestCase
     Merger::Merge.new(people(:original), people(:duplicate), :skip_association => :phones).merge!
     assert_equal 2, people(:original).phones.count
   end
+
+  def test_merge_join_model
+
+    duplicated_tags = [
+      tags(:original_friend),
+      tags(:dup_friend1),
+      tags(:dup_friend2)
+    ]
+
+    Merger::Merge.new(duplicated_tags, :keep => tags(:original_friend)).merge!
+
+    assert_equal 2, people(:original).tags.count
+    assert_equal true, people(:original).tags.include?(tags(:original_friend))
+    assert_equal true, people(:original).tags.include?(tags(:developer))
+  
+  end
+
   
 end

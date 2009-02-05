@@ -17,11 +17,23 @@ load(File.join(File.dirname(__FILE__), "db", "schema.rb"))
 
 class Person < ActiveRecord::Base
   has_many :phones
+  has_many :taggings, :dependent => :destroy
+  has_many :tags, :through => :taggings
 end
 class Phone < ActiveRecord::Base
   belongs_to :person
   set_inheritance_column false
 end
+class Tag < ActiveRecord::Base
+  has_many :taggings, :dependent => :destroy
+  has_many :people, :through => :taggings
+end
+
+class Tagging < ActiveRecord::Base
+  belongs_to :person
+  belongs_to :tag
+end
+
 
 class Test::Unit::TestCase #:nodoc:
   self.fixture_path = File.dirname(__FILE__) + "/fixtures/"
