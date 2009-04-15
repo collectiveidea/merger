@@ -26,7 +26,7 @@ module Merger
             name = "#{association.name.to_s.singularize}_ids"
             keep.send("#{name}=", keep.send(name) | record.send(name))
           when :belongs_to, :has_one
-            keep.send("#{association.name}=", record.send(association.name))
+            keep.send("#{association.name}=", record.send(association.name)) if keep.send("#{association.name}").nil?
           end
         end
       end

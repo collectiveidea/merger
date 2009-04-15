@@ -47,5 +47,14 @@ class Merger::MergeTest < Test::Unit::TestCase
   
   end
 
+  def test_merge_belongs_to
+    Merger::Merge.new( phones(:duplicate_mobile), :keep => phones(:original_work) ).merge!
+    
+    assert people(:original).phones.include?( phones(:original_work) )
+    assert !people(:original).phones.include?( phones(:duplicate_mobile) )
+    
+    assert_equal people(:original), phones(:original_work).person
+    assert_equal 0, people(:duplicate).phones.count, people(:duplicate).phones.inspect
+  end
   
 end
