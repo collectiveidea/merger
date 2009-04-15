@@ -57,4 +57,12 @@ class Merger::MergeTest < Test::Unit::TestCase
     assert_equal 0, people(:duplicate).phones.count, people(:duplicate).phones.inspect
   end
   
+  def test_merge_model_with_single_table_inheritance
+    @merge.associations!
+    assert_equal 6, people(:original).companies.count
+    assert_equal 3, people(:original).clients.count
+    assert_equal 3, people(:original).suppliers.count
+    assert_equal 0, people(:duplicate).companies.count
+  end
+  
 end

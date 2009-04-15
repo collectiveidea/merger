@@ -19,6 +19,10 @@ class Person < ActiveRecord::Base
   has_many :phones
   has_many :taggings, :dependent => :destroy
   has_many :tags, :through => :taggings
+  
+  has_many :companies
+  has_many :clients
+  has_many :suppliers
 end
 class Phone < ActiveRecord::Base
   belongs_to :person
@@ -34,6 +38,13 @@ class Tagging < ActiveRecord::Base
   belongs_to :tag
 end
 
+class Company < ActiveRecord::Base
+  belongs_to :person
+end
+class Client < Company
+end
+class Supplier < Company
+end
 
 class Test::Unit::TestCase #:nodoc:
   self.fixture_path = File.dirname(__FILE__) + "/fixtures/"

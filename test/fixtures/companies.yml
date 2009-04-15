@@ -1,0 +1,26 @@
+original_client_1:
+  type: Client
+  name: client 1
+  person_id: 1
+original_client_2:
+  type: Client
+  name: client 2
+  person_id: 1
+original_supplier_1:
+  type: Supplier
+  name: supplier 1
+  person_id: 1
+
+duplicate_client_3:
+  type: Client
+  name: client 3
+  person_id: 2
+
+duplicate_supplier_2:
+  type: Supplier
+  name: supplier 2
+  person_id: 2
+duplicate_supplier_3:
+  type: Supplier
+  name: supplier 3
+  person_id: 2

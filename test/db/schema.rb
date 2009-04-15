@@ -19,4 +19,9 @@ ActiveRecord::Schema.define(:version => 0) do
     t.belongs_to :tag
   end
   
+  create_table :companies, :force => true do |t|
+    t.belongs_to :person
+    t.string :type
+    t.string :name
+  end
 end
