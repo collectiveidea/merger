@@ -37,6 +37,7 @@ module Merger
     def merge!
       keep.class.transaction do
         associations!
+        duplicates.each {|duplicate| duplicate.send(:merged_with, keep) if duplicate.respond_to?(:merged_with) }
         duplicates.each(&:destroy) if options[:destroy]
       end
     end

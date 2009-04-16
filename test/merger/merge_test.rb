@@ -74,4 +74,9 @@ class Merger::MergeTest < Test::Unit::TestCase
     Merger::Merge.new(people(:original), people(:duplicate), :destroy => false).merge!
     assert_not_nil Person.find_by_id(people(:duplicate).id)
   end
+  
+  def test_merged_with_callback
+    people(:duplicate).expects(:merged_with).with(people(:original))
+    @merge.merge!
+  end
 end
