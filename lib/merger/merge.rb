@@ -10,11 +10,12 @@ module Merger
     end
   
     def ignored_associations
-      ignored = Array(options[:skip_association])
+      return @ignored if @ignored
+      @ignored = Array(options[:skip_association])
       keep.class.reflect_on_all_associations.each do |association|
-        ignored << association.through_reflection.name if association.through_reflection
+        @ignored << association.through_reflection.name if association.through_reflection
       end
-      ignored
+      @ignored
     end
 
     def associations!
