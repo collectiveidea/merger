@@ -34,8 +34,10 @@ module Merger
     end
     
     def merge!
-      associations!
-      duplicates.each(&:destroy)
+      keep.class.transaction do
+        associations!
+        duplicates.each(&:destroy)
+      end
     end
   
   end
