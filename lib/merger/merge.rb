@@ -4,6 +4,7 @@ module Merger
   
     def initialize(*records)
       @options = records.extract_options!
+      @options[:destroy] = true unless @options.has_key?(:destroy)
       records = records.flatten.uniq
       @keep = options[:keep] || records.sort_by(&:id).first
       @duplicates = records - [@keep]
@@ -36,7 +37,7 @@ module Merger
     def merge!
       keep.class.transaction do
         associations!
-        duplicates.each(&:destroy)
+        duplicates.each(&:destroy) if options[:destroy]
       end
     end
   

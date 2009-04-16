@@ -65,4 +65,13 @@ class Merger::MergeTest < Test::Unit::TestCase
     assert_equal 0, people(:duplicate).companies.count
   end
   
+  def test_destroy_duplicates
+    @merge.merge!
+    assert_nil Person.find_by_id(people(:duplicate).id)
+  end
+  
+  def test_no_destroy_option
+    Merger::Merge.new(people(:original), people(:duplicate), :destroy => false).merge!
+    assert_not_nil Person.find_by_id(people(:duplicate).id)
+  end
 end
