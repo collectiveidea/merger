@@ -75,8 +75,9 @@ class Merger::MergeTest < Test::Unit::TestCase
     assert_not_nil Person.find_by_id(people(:duplicate).id)
   end
   
-  def test_merged_with_callback
-    people(:duplicate).expects(:merged_with).with(people(:original))
+  def test_callback
+    people(:duplicate).expects(:before_merge).with(people(:original))
+    people(:duplicate).expects(:after_merge).with(people(:original))
     @merge.merge!
   end
 end
