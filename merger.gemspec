@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{merger}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Brandon Keepers"]
@@ -21,9 +21,9 @@ Gem::Specification.new do |s|
      "README",
      "Rakefile",
      "VERSION",
-     "init.rb",
      "lib/merger.rb",
      "lib/merger/merge.rb",
+     "merger.gemspec",
      "test/db/database.yml",
      "test/db/schema.rb",
      "test/fixtures/companies.yml",
