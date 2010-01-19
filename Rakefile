@@ -9,7 +9,7 @@ begin
     gem.email = "brandon@opensoul.org"
     gem.homepage = "http://github.com/collectiveidea/merger"
     gem.authors = ["Brandon Keepers"]
-    gem.add_dependency "active_record"
+    gem.add_dependency "activerecord"
     gem.add_development_dependency "mocha"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
